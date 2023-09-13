@@ -8,7 +8,7 @@ export default function App() {
     return Math.floor(Math.random() * max);
   }
 
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [imageWithtText, setImageWithtText] = useState('');
   const [images, setImages] = useState('');
   const [imageWithoutText, setImageWithoutText] = useState('');
@@ -34,7 +34,7 @@ export default function App() {
         console.log(res.data);
 
         const randomImage = res.data[getRandomImages(198)].url;
-        setLoading(false);
+        setIsLoading(false);
         console.log(randomImage);
         setImageWithoutText(removeDefaultTextImg(randomImage));
       })
