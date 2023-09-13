@@ -44,7 +44,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    setImageWithtText(imageWithoutText + `/ ${topText}/` + bottomText);
+    setImageWithtText(imageWithoutText + `/_${topText}/` + bottomText);
   }, [topText, bottomText, imageWithoutText]);
 
   console.log('without', imageWithoutText);
@@ -57,20 +57,36 @@ export default function App() {
       <h1>React meme generator</h1>
 
       {isLoading && <div>Loading...</div>}
-      <img data-test-id="meme-image" src={imageWithtText} alt="random" />
+      {imageWithtText === `https://api.memegen.link/images//Meme_Template` ? (
+        <div>
+          Meme not foun...refresh the page or write the wished meme in the input
+        </div>
+      ) : (
+        <img data-test-id="meme-image" src={imageWithtText} alt="random" />
+      )}
 
       <div>enter top text {topText}</div>
       <input
         onChange={(event) =>
-          setTopText('Top text ' + event.currentTarget.value)
+          setTopText('Top_text_' + event.currentTarget.value)
         }
       />
       <div>enter bottom text {bottomText}</div>
       <input
         onChange={(event) =>
-          setBottomText('Bottom text ' + event.currentTarget.value)
+          setBottomText('Bottom_text_' + event.currentTarget.value)
         }
       />
+      <div>Find exact meme</div>
+      <form>
+        <input
+          onChange={(event) =>
+            setImageWithtText(
+              url + `/${event.currentTarget.value}/Meme_Template`,
+            )
+          }
+        />
+      </form>
     </div>
   );
 }
