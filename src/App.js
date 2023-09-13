@@ -1,4 +1,5 @@
 import axios from 'axios';
+import download from 'image-downloader';
 import { useEffect, useState } from 'react';
 
 export default function App() {
@@ -47,6 +48,20 @@ export default function App() {
     setImageWithtText(imageWithoutText + `/_${topText}/` + bottomText);
   }, [topText, bottomText, imageWithoutText]);
 
+  const downloadImage = () => {
+    const options = {
+      url: imageWithtText,
+      dest: 'Downloads', // will be saved to /path/to/dest/image.jpg
+    };
+
+    download
+      .image(options)
+      .then(({ filename }) => {
+        console.log('Saved to', filename); // saved to /path/to/dest/image.jpg
+      })
+      .catch((err) => console.error(err));
+  };
+
   console.log('without', imageWithoutText);
   console.log('witht', imageWithtText);
   console.log(removeDefaultTextImg());
@@ -80,13 +95,17 @@ export default function App() {
       <div>Find exact meme</div>
       <form>
         <input
-          onChange={(event) =>
+          onChange={(event) => {
+            event.preventDefault();
             setImageWithtText(
               url + `/${event.currentTarget.value}/Meme_Template`,
-            )
-          }
+            );
+          }}
         />
       </form>
+      <button type="button" onClick={() => downloadImage}>
+        Download
+      </button>
     </div>
   );
 }

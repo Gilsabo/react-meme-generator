@@ -7,6 +7,9 @@ dependencies:
   axios:
     specifier: ^1.5.0
     version: 1.5.0
+  image-downloader:
+    specifier: ^4.3.0
+    version: 4.3.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -5822,6 +5825,15 @@ packages:
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
+
+  /image-downloader@4.3.0:
+    resolution: {integrity: sha512-UBioN0E+8zu8N0lLC6wkZmPA/MA1A3yx9B1whjy5O/YiOV9XrSxLLKi7JqLLj6knQ3n9N1OBoHFS7shp8sehBQ==}
+    engines: {node: '>=6.10.1'}
+    dependencies:
+      follow-redirects: 1.15.2
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /immer@9.0.21:
     resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}

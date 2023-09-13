@@ -5,6 +5,7 @@
   "dependencies": {
     "@upleveled/react-scripts": "5.0.11",
     "axios": "^1.5.0",
+    "image-downloader": "^4.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
