@@ -7,32 +7,75 @@ export default function App() {
   function getRandomImages(max) {
     return Math.floor(Math.random() * max);
   }
+
+  const [isLoading, setLoading] = useState(true);
+  const [imageWithtText, setImageWithtText] = useState('');
   const [images, setImages] = useState('');
-  let [topText, setTopText] = useState('dddd');
-  let [bottomText, setBottomText] = useState('');
+  const [imageWithoutText, setImageWithoutText] = useState('');
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
+
+  const removeDefaultTextImg = (randomImage) => {
+    const linkWithoutText = [];
+    if (typeof randomImage === 'string') {
+      const words = randomImage.split('/');
+      for (let i = 0; i < 5; i++) {
+        linkWithoutText.push(words[i]);
+      }
+    }
+    return linkWithoutText.join('/');
+  };
 
   useEffect(() => {
     axios
       .get(url)
       .then((res) => {
+        setImages(res.data);
         console.log(res.data);
-        setImages(res.data[getRandomImages(198)].url);
+
+        const randomImage = res.data[getRandomImages(198)].url;
+        setLoading(false);
+        console.log(randomImage);
+        setImageWithoutText(removeDefaultTextImg(randomImage));
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  const removeDefaultTextImg = () => {
-    const linkWithoutText = [];
-    const words = images.split('/');
-    for (let i = 0; i < 5; i++) {
-      linkWithoutText.push(words[i]);
-    }
-    return linkWithoutText.join('/');
-  };
-
   useEffect(() => {
+    setImageWithtText(imageWithoutText + `/ ${topText}/` + bottomText);
+  }, [topText, bottomText, imageWithoutText]);
+
+  console.log('without', imageWithoutText);
+  console.log('witht', imageWithtText);
+  console.log(removeDefaultTextImg());
+  console.log(images);
+
+  return (
+    <div className="App">
+      <h1>React meme generator</h1>
+
+      {isLoading && <div>Loading...</div>}
+      <img data-test-id="meme-image" src={imageWithtText} alt="random" />
+
+      <div>enter top text {topText}</div>
+      <input
+        onChange={(event) =>
+          setTopText('Top text ' + event.currentTarget.value)
+        }
+      />
+      <div>enter bottom text {bottomText}</div>
+      <input
+        onChange={(event) =>
+          setBottomText('Bottom text ' + event.currentTarget.value)
+        }
+      />
+    </div>
+  );
+}
+
+/* useEffect(() => {
     const urli = 'https://api.memegen.link/images';
     const templateId = 'aag'; // Replace with your desired template ID
 
@@ -48,32 +91,4 @@ export default function App() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  console.log(`${removeDefaultTextImg()}/${encodeURIComponent(topText)}`);
-
-  return (
-    <div className="App">
-      <h1>React meme generator</h1>
-      {!topText && (
-        <img
-          data-test-id="meme-image"
-          src={removeDefaultTextImg()}
-          alt="random"
-        />
-      )}
-      {topText && (
-        <img
-          data-test-id="meme-image"
-          src={`removeDefaultTextImg()/${encodeURIComponent(topText)}`}
-          alt="random"
-        />
-      )}
-
-      <div>enter top text {topText}</div>
-      <input onChange={(event) => setTopText(event.currentTarget.value)} />
-      <div>enter bottom text {bottomText}</div>
-      <input onChange={(event) => setBottomText(event.currentTarget.value)} />
-    </div>
-  );
-}
+  }, []); */
