@@ -1,6 +1,19 @@
 import axios from 'axios';
 import { saveAs } from 'file-saver';
 import { useEffect, useState } from 'react';
+import {
+  BottomText,
+  Box,
+  Button,
+  FindMeme,
+  Form,
+  Header,
+  Image,
+  ImageContainer,
+  Input,
+  MainContainer,
+  TopText,
+} from './StyledApp';
 
 export default function App() {
   const url = 'https://api.memegen.link/images';
@@ -58,42 +71,53 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <h1>React meme generator</h1>
+    <MainContainer>
+      <Header>React meme generator</Header>
+      <Box>
+        {isLoading && <div>Loading...</div>}
+        {imageWithtText === `https://api.memegen.link/images//Meme_Template` ? (
+          <div>
+            Meme not foun...refresh the page or write the wished meme in the
+            input
+          </div>
+        ) : (
+          <ImageContainer>
+            <Image
+              data-test-id="meme-image"
+              src={imageWithtText}
+              alt="random"
+            />
+          </ImageContainer>
+        )}
 
-      {isLoading && <div>Loading...</div>}
-      {imageWithtText === `https://api.memegen.link/images//Meme_Template` ? (
-        <div>
-          Meme not foun...refresh the page or write the wished meme in the input
-        </div>
-      ) : (
-        <img data-test-id="meme-image" src={imageWithtText} alt="random" />
-      )}
-
-      <div>enter top text {topText}</div>
-      <input
-        onChange={(event) =>
-          setTopText('Top_text_' + event.currentTarget.value)
-        }
-      />
-      <div>enter bottom text {bottomText}</div>
-      <input
-        onChange={(event) =>
-          setBottomText('Bottom_text_' + event.currentTarget.value)
-        }
-      />
-      <div>Find exact meme</div>
-      <form>
-        <input
-          onChange={(event) => {
-            event.preventDefault();
-            setImageWithtText(
-              url + `/${event.currentTarget.value}/Meme_Template`,
-            );
-          }}
+        <TopText>enter top text</TopText>
+        <Input
+          onChange={(event) =>
+            setTopText('Top_text_' + event.currentTarget.value)
+          }
         />
-      </form>
-      <button onClick={() => handleClick()}>Download</button>
-    </div>
+        <BottomText>enter bottom text</BottomText>
+        <Input
+          onChange={(event) =>
+            setBottomText('Bottom_text_' + event.currentTarget.value)
+          }
+        />
+        <FindMeme>Find exact meme</FindMeme>
+        <Form
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+        >
+          <Input
+            onChange={(event) => {
+              setImageWithtText(
+                url + `/${event.currentTarget.value}/Meme_Template`,
+              );
+            }}
+          />
+        </Form>
+        <Button onClick={() => handleClick()}>Download</Button>
+      </Box>
+    </MainContainer>
   );
 }
