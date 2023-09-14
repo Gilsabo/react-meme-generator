@@ -60,7 +60,7 @@ export default function App() {
 
   useEffect(() => {
     setImageWithtText(
-      imageWithoutText + `/Top_Text_${topText}/Bottom_Text_${bottomText}`,
+      imageWithoutText + `/Top_text_${topText}/Bottom_text_${bottomText}`,
     );
   }, [topText, bottomText, imageWithoutText]);
 
