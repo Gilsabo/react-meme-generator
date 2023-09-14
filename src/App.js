@@ -6,11 +6,11 @@ import {
   Box,
   Button,
   FindMeme,
-  Form,
   Header,
   Image,
   ImageContainer,
   Input,
+  Label,
   MainContainer,
   TopText,
 } from './StyledApp';
@@ -109,19 +109,13 @@ export default function App() {
           />
         </BottomText>
         <FindMeme>Find exact meme</FindMeme>
-        <Form
-          onSubmit={(event) => {
-            event.preventDefault();
-          }}
-        >
+        <Label>
           <Input
             onChange={(event) => {
-              setImageWithtText(
-                url + `/${event.currentTarget.value}/Meme_Template`,
-              );
+              setImageWithtText(url + `/${event.currentTarget.value}.jpg`);
             }}
           />
-        </Form>
+        </Label>
         <Button onClick={() => handleClick()}>Download</Button>
       </Box>
     </MainContainer>

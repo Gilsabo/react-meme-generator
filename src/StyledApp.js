@@ -59,6 +59,6 @@ export const Button = styled.button`
   border-radius: 5px;
 `;
 
-export const Form = styled.form`
+export const Label = styled.label`
   margin: 0 auto;
 `;
