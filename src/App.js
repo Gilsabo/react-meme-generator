@@ -94,19 +94,12 @@ export default function App() {
 
         <TopText>
           Top text
-          <Input
-            value={topText}
-            onChange={(event) =>
-              setTopText('Top_Text_' + event.currentTarget.value)
-            }
-          />
+          <Input onChange={(event) => setTopText(event.currentTarget.value)} />
         </TopText>
         <BottomText>
           Bottom text
           <Input
-            onChange={(event) =>
-              setBottomText('Bottom_text_' + event.currentTarget.value)
-            }
+            onChange={(event) => setBottomText(event.currentTarget.value)}
           />
         </BottomText>
         <FindMeme>Find exact meme</FindMeme>
