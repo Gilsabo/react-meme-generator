@@ -94,13 +94,13 @@ export default function App() {
         <TopText>enter top text</TopText>
         <Input
           onChange={(event) =>
-            setTopText('Top_text_' + event.currentTarget.value)
+            setTopText('Top_Text_' + event.currentTarget.value)
           }
         />
         <BottomText>enter bottom text</BottomText>
         <Input
           onChange={(event) =>
-            setBottomText('Bottom_text_' + event.currentTarget.value)
+            setBottomText('Bottom_Text_' + event.currentTarget.value)
           }
         />
         <FindMeme>Find exact meme</FindMeme>
