@@ -77,7 +77,7 @@ export default function App() {
         {isLoading && <div>Loading...</div>}
         {imageWithtText === `https://api.memegen.link/images//Meme_Template` ? (
           <div>
-            Meme not foun...refresh the page or write the wished meme in the
+            Meme not found...refresh the page or write the wished meme in the
             input
           </div>
         ) : (
