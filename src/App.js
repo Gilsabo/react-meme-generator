@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { saveAs } from 'file-saver';
 import { useEffect, useState } from 'react';
 
 export default function App() {
@@ -47,12 +48,14 @@ export default function App() {
     setImageWithtText(imageWithoutText + `/_${topText}/` + bottomText);
   }, [topText, bottomText, imageWithoutText]);
 
-
-
   console.log('without', imageWithoutText);
   console.log('witht', imageWithtText);
   console.log(removeDefaultTextImg());
   console.log(images);
+
+  const handleClick = () => {
+    return saveAs(imageWithtText, 'meme');
+  };
 
   return (
     <div className="App">
@@ -90,27 +93,7 @@ export default function App() {
           }}
         />
       </form>
-      <button type="button" onClick={() => }>
-        Download
-      </button>
+      <button onClick={() => handleClick()}>Download</button>
     </div>
   );
 }
-
-/* useEffect(() => {
-    const urli = 'https://api.memegen.link/images';
-    const templateId = 'aag'; // Replace with your desired template ID
-
-    axios
-      .post(urli, {
-        template_id: templateId,
-        text: [topText, bottomText],
-      })
-      .then((res) => {
-        console.log(res.data);
-        setImages(res.data.url);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []); */
