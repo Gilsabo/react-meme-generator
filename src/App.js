@@ -59,7 +59,9 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    setImageWithtText(imageWithoutText + `/_${topText}/` + bottomText);
+    setImageWithtText(
+      imageWithoutText + `/Top_Text_${topText}/Bottom_Text_${bottomText}`,
+    );
   }, [topText, bottomText, imageWithoutText]);
 
   console.log('without', imageWithoutText);
@@ -92,17 +94,9 @@ export default function App() {
         )}
 
         <TopText>enter top text</TopText>
-        <Input
-          onChange={(event) =>
-            setTopText('Top_Text_' + event.currentTarget.value)
-          }
-        />
+        <Input onChange={(event) => setTopText(event.currentTarget.value)} />
         <BottomText>enter bottom text</BottomText>
-        <Input
-          onChange={(event) =>
-            setBottomText('Bottom_Text_' + event.currentTarget.value)
-          }
-        />
+        <Input onChange={(event) => setBottomText(event.currentTarget.value)} />
         <FindMeme>Find exact meme</FindMeme>
         <Form
           onSubmit={(event) => {
