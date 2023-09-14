@@ -35,13 +35,13 @@ export const Image = styled.img`
   height: 100%;
 `;
 
-export const TopText = styled.div`
+export const TopText = styled.label`
   width: 300px;
   margin: 0 auto;
   text-align: center;
 `;
 
-export const BottomText = styled.div`
+export const BottomText = styled.label`
   width: 300px;
   margin: 0 auto;
   text-align: center;

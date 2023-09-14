@@ -92,18 +92,23 @@ export default function App() {
           </ImageContainer>
         )}
 
-        <TopText>enter top text</TopText>
-        <Input
-          onChange={(event) =>
-            setTopText('Top_Text_' + event.currentTarget.value)
-          }
-        />
-        <BottomText>enter bottom text</BottomText>
-        <Input
-          onChange={(event) =>
-            setBottomText('Bottom_text_' + event.currentTarget.value)
-          }
-        />
+        <TopText>
+          Top text
+          <Input
+            value={topText}
+            onChange={(event) =>
+              setTopText('Top_Text_' + event.currentTarget.value)
+            }
+          />
+        </TopText>
+        <BottomText>
+          Bottom text
+          <Input
+            onChange={(event) =>
+              setBottomText('Bottom_text_' + event.currentTarget.value)
+            }
+          />
+        </BottomText>
         <FindMeme>Find exact meme</FindMeme>
         <Form
           onSubmit={(event) => {
