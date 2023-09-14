@@ -12,6 +12,7 @@ import {
   ImageContainer,
   Input,
   MainContainer,
+  NotFound,
   TopText,
 } from './StyledApp';
 
@@ -76,10 +77,10 @@ export default function App() {
       <Box>
         {isLoading && <div>Loading...</div>}
         {imageWithtText === `https://api.memegen.link/images//Meme_Template` ? (
-          <div>
+          <NotFound>
             Meme not found...refresh the page or write the wished meme in the
             input
-          </div>
+          </NotFound>
         ) : (
           <ImageContainer>
             <Image
