@@ -59,9 +59,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    setImageWithtText(
-      imageWithoutText + `/Top_text_${topText}/Bottom_text_${bottomText}`,
-    );
+    setImageWithtText(imageWithoutText + `/_${topText}/` + bottomText);
   }, [topText, bottomText, imageWithoutText]);
 
   console.log('without', imageWithoutText);
@@ -73,6 +71,7 @@ export default function App() {
     return saveAs(imageWithtText, 'meme');
   };
 
+  // I need to create a function to erease the top and bottom text when the input boxes are erease
   return (
     <MainContainer>
       <Header>React meme generator</Header>
@@ -94,9 +93,17 @@ export default function App() {
         )}
 
         <TopText>enter top text</TopText>
-        <Input onChange={(event) => setTopText(event.currentTarget.value)} />
+        <Input
+          onChange={(event) =>
+            setTopText('Top_Text_' + event.currentTarget.value)
+          }
+        />
         <BottomText>enter bottom text</BottomText>
-        <Input onChange={(event) => setBottomText(event.currentTarget.value)} />
+        <Input
+          onChange={(event) =>
+            setBottomText('Bottom_text_' + event.currentTarget.value)
+          }
+        />
         <FindMeme>Find exact meme</FindMeme>
         <Form
           onSubmit={(event) => {
