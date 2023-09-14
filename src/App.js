@@ -110,7 +110,6 @@ export default function App() {
         </BottomText>
         <FindMeme>Find exact meme</FindMeme>
         <Label>
-          {' '}
           Meme template
           <Input
             onChange={(event) => {
