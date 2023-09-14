@@ -12,7 +12,6 @@ import {
   ImageContainer,
   Input,
   MainContainer,
-  NotFound,
   TopText,
 } from './StyledApp';
 
@@ -59,8 +58,12 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    setImageWithtText(imageWithoutText + `/_${topText}/` + bottomText);
-  }, [topText, bottomText, imageWithoutText]);
+    setImageWithtText(imageWithoutText + '.jpg');
+  }, [imageWithoutText]);
+
+  useEffect(() => {
+    setImageWithtText(imageWithoutText + `/${topText}/` + bottomText + '.jpg');
+  }, [topText, bottomText]);
 
   console.log('without', imageWithoutText);
   console.log('witht', imageWithtText);
@@ -77,11 +80,14 @@ export default function App() {
       <Header>React meme generator</Header>
       <Box>
         {isLoading && <div>Loading...</div>}
-        {imageWithtText === `https://api.memegen.link/images//Meme_Template` ? (
-          <NotFound>
-            Meme not found...refresh the page or write the wished meme in the
-            input
-          </NotFound>
+        {imageWithtText === '' ? (
+          <ImageContainer>
+            <Image
+              data-test-id="meme-image"
+              src={imageWithtText}
+              alt="random"
+            />
+          </ImageContainer>
         ) : (
           <ImageContainer>
             <Image

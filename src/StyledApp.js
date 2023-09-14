@@ -24,12 +24,6 @@ export const ImageContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const NotFound = styled.div`
-  margin: 0 auto;
-  border: 2px red solid;
-  border-radius: 3px;
-`;
-
 export const Image = styled.img`
   width: 100%;
   height: 100%;
