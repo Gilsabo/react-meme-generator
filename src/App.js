@@ -57,9 +57,10 @@ export default function App() {
     setImageWithtText(imageWithoutText + '.jpg');
   }, [imageWithoutText]);
 
+  console.log(images);
   useEffect(() => {
     setImageWithtText(imageWithoutText + `/${topText}/` + bottomText + '.jpg');
-  }, [topText, bottomText]);
+  }, [topText, bottomText, imageWithoutText]);
 
   console.log('without', imageWithoutText);
   console.log('witht', imageWithtText);
