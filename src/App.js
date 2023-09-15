@@ -5,7 +5,6 @@ import {
   BottomText,
   Box,
   Button,
-  FindMeme,
   Header,
   Image,
   ImageContainer,
@@ -97,26 +96,28 @@ export default function App() {
             />
           </ImageContainer>
         )}
-
-        <TopText>
-          Top text
-          <Input onChange={(event) => setTopText(event.currentTarget.value)} />
-        </TopText>
-        <BottomText>
-          Bottom text
-          <Input
-            onChange={(event) => setBottomText(event.currentTarget.value)}
-          />
-        </BottomText>
-        <FindMeme>Find exact meme</FindMeme>
-        <Label>
-          Meme template
-          <Input
-            onChange={(event) => {
-              setImageWithtText(url + `/${event.currentTarget.value}.jpg`);
-            }}
-          />
-        </Label>
+        <form>
+          <TopText>
+            Top text
+            <Input
+              onChange={(event) => setTopText(event.currentTarget.value)}
+            />
+          </TopText>
+          <BottomText>
+            Bottom text
+            <Input
+              onChange={(event) => setBottomText(event.currentTarget.value)}
+            />
+          </BottomText>
+          <Label>
+            Meme template
+            <Input
+              onChange={(event) => {
+                setImageWithtText(url + `/${event.currentTarget.value}.jpg`);
+              }}
+            />
+          </Label>
+        </form>
         <Button onClick={() => handleClick()}>Download</Button>
       </Box>
     </MainContainer>

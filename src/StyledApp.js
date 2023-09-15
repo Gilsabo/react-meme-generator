@@ -40,11 +40,6 @@ export const BottomText = styled.label`
   margin: 0 auto;
   text-align: center;
 `;
-export const FindMeme = styled.div`
-  width: 300px;
-  margin: 0 auto;
-  text-align: center;
-`;
 
 export const Input = styled.input`
   width: 300px;
