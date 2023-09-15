@@ -5,7 +5,6 @@ import {
   BottomText,
   Box,
   Button,
-  Form,
   Header,
   Image,
   ImageContainer,
@@ -93,7 +92,7 @@ export default function App() {
             />
           </ImageContainer>
         )}
-        <Form
+        <form
           onSubmit={(event) => {
             event.preventDefault();
           }}
@@ -125,7 +124,7 @@ export default function App() {
               }}
             />
           </Label>
-        </Form>
+        </form>
         <Button onClick={() => handleClick()}>Download</Button>
       </Box>
     </MainContainer>
