@@ -44,11 +44,8 @@ export default function App() {
       .get(url)
       .then((res) => {
         setImages(res.data);
-        console.log(res.data);
-
         const randomImage = res.data[getRandomImages(198)].url;
         setIsLoading(false);
-        console.log(randomImage);
         setImageWithoutText(removeDefaultTextImg(randomImage));
       })
       .catch((error) => {
@@ -66,8 +63,6 @@ export default function App() {
 
   console.log('without', imageWithoutText);
   console.log('witht', imageWithtText);
-  console.log(removeDefaultTextImg());
-  console.log(images);
 
   const handleClick = () => {
     return saveAs(imageWithtText, 'meme');
@@ -121,7 +116,10 @@ export default function App() {
             Meme template
             <Input
               onChange={(event) => {
-                setImageWithtText(url + `/${event.currentTarget.value}.jpg`);
+                setImageWithtText(
+                  url +
+                    `/${event.currentTarget.value}/${topText}/${bottomText}.jpg`,
+                );
               }}
             />
           </Label>
