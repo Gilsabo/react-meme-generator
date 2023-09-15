@@ -96,16 +96,24 @@ export default function App() {
             />
           </ImageContainer>
         )}
-        <form>
-          <TopText>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+        >
+          <TopText for="topText">
             Top text
             <Input
+              type="text"
+              id="topText"
               onChange={(event) => setTopText(event.currentTarget.value)}
             />
           </TopText>
-          <BottomText>
+          <BottomText for="bottomText">
             Bottom text
             <Input
+              type="text"
+              id="bottomText"
               onChange={(event) => setBottomText(event.currentTarget.value)}
             />
           </BottomText>
