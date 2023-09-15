@@ -16,18 +16,15 @@ import {
 
 export default function App() {
   const url = 'https://api.memegen.link/images';
-
   function getRandomImages(max) {
     return Math.floor(Math.random() * max);
   }
-
   const [isLoading, setIsLoading] = useState(true);
   const [imageWithtText, setImageWithtText] = useState('');
   const [images, setImages] = useState('');
   const [imageWithoutText, setImageWithoutText] = useState('');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-
   const removeDefaultTextImg = (randomImage) => {
     const linkWithoutText = [];
     if (typeof randomImage === 'string') {
@@ -38,7 +35,6 @@ export default function App() {
     }
     return linkWithoutText.join('/');
   };
-
   useEffect(() => {
     axios
       .get(url)
@@ -52,7 +48,6 @@ export default function App() {
         console.log(error);
       });
   }, []);
-
   useEffect(() => {
     setImageWithtText(imageWithoutText + '.jpg');
   }, [imageWithoutText]);
@@ -60,15 +55,13 @@ export default function App() {
   console.log(images);
   useEffect(() => {
     setImageWithtText(imageWithoutText + `/${topText}/` + bottomText + '.jpg');
-  }, [topText, bottomText, imageWithoutText]);
+  }, [topText, bottomText]);
 
   console.log('without', imageWithoutText);
   console.log('witht', imageWithtText);
-
   const handleClick = () => {
     return saveAs(imageWithtText, 'meme');
   };
-
   // I need to create a function to erease the top and bottom text when the input boxes are erease
   return (
     <MainContainer>
