@@ -96,7 +96,11 @@ export default function App() {
             />
           </ImageContainer>
         )}
-        <form>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+        >
           <TopText>
             Top text
             <Input
