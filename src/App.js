@@ -101,15 +101,19 @@ export default function App() {
             event.preventDefault();
           }}
         >
-          <TopText>
+          <TopText for="top text">
             Top text
             <Input
+              name="top text"
+              type="text"
               onChange={(event) => setTopText(event.currentTarget.value)}
             />
           </TopText>
-          <BottomText>
+          <BottomText for="bottom text">
             Bottom text
             <Input
+              name="bottom text"
+              type="text"
               onChange={(event) => setBottomText(event.currentTarget.value)}
             />
           </BottomText>
