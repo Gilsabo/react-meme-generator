@@ -35,6 +35,11 @@ export const TopText = styled.label`
   text-align: center;
 `;
 
+export const Form = styled.form`
+  margin: 0 auto;
+  padding: 10px;
+`;
+
 export const BottomText = styled.label`
   width: 300px;
   margin: 0 auto;
