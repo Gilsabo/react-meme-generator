@@ -19,12 +19,14 @@ export default function App() {
   function getRandomImages(max) {
     return Math.floor(Math.random() * max);
   }
+  const [template, setTemplate] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [imageWithtText, setImageWithtText] = useState('');
   const [images, setImages] = useState('');
   const [imageWithoutText, setImageWithoutText] = useState('');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
+
   const removeDefaultTextImg = (randomImage) => {
     const linkWithoutText = [];
     if (typeof randomImage === 'string') {
@@ -48,14 +50,25 @@ export default function App() {
         console.log(error);
       });
   }, []);
-  useEffect(() => {
-    setImageWithtText(imageWithoutText + '.jpg');
-  }, [imageWithoutText]);
 
   console.log(images);
   useEffect(() => {
-    setImageWithtText(imageWithoutText + `/${topText}/` + bottomText + '.jpg');
-  }, [topText, bottomText]);
+    if (
+      imageWithoutText &&
+      topText === '' &&
+      bottomText === '' &&
+      template === ''
+    ) {
+      setImageWithtText(imageWithoutText + '/.jpg');
+    } else if (!template === 'doge') {
+      setImageWithtText(url + template + '/.jpg');
+      console.log(template);
+    } else {
+      setImageWithtText(
+        imageWithoutText + `/${topText}/` + bottomText + '.jpg',
+      );
+    }
+  }, [topText, bottomText, imageWithoutText, template]);
 
   console.log('without', imageWithoutText);
   console.log('witht', imageWithtText);
@@ -110,10 +123,7 @@ export default function App() {
             Meme template
             <Input
               onChange={(event) => {
-                setImageWithtText(
-                  url +
-                    `/${event.currentTarget.value}/${topText}/${bottomText}.jpg`,
-                );
+                setTemplate(event.currentTarget.value);
               }}
             />
           </Label>
