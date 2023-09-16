@@ -60,13 +60,52 @@ export default function App() {
       template === ''
     ) {
       setImageWithtText(imageWithoutText + '/.jpg');
-    } else if (!template === 'doge') {
-      setImageWithtText(url + template + '/.jpg');
-      console.log(template);
-    } else {
+    } else if (
+      imageWithoutText &&
+      topText.length > 0 &&
+      bottomText === '' &&
+      template === ''
+    ) {
+      setImageWithtText(imageWithoutText + `/${topText}.jpg`);
+    } else if (
+      imageWithoutText &&
+      topText.length > 0 &&
+      bottomText.length > 0 &&
+      template === ''
+    ) {
       setImageWithtText(
         imageWithoutText + `/${topText}/` + bottomText + '.jpg',
       );
+    } else if (
+      imageWithoutText &&
+      topText.length === 0 &&
+      bottomText.length > 0 &&
+      template === ''
+    ) {
+      setImageWithtText(imageWithoutText + `/_/${bottomText}.jpg`);
+    } else if (
+      template.length > 0 &&
+      topText.length === 0 &&
+      bottomText.length === 0
+    ) {
+      setImageWithtText(url + `/` + template + '/.jpg');
+      console.log();
+    } else if (
+      template.length > 0 &&
+      topText.length > 0 &&
+      bottomText.length === 0
+    ) {
+      setImageWithtText(url + '/' + template + `/${topText}/.jpg`);
+    } else if (
+      template.length > 0 &&
+      topText.length > 0 &&
+      bottomText.length > 0
+    ) {
+      setImageWithtText(
+        url + '/' + template + `/${topText}/` + bottomText + '.jpg',
+      );
+    } else {
+      setImageWithtText(url + '/' + template + `/_/${bottomText}.jpg`);
     }
   }, [topText, bottomText, imageWithoutText, template]);
 
