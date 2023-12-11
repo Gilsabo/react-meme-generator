@@ -51,7 +51,7 @@ export default function App() {
       });
   }, []);
 
-  console.log(images);
+
   useEffect(() => {
     if (
       imageWithoutText &&
@@ -89,7 +89,7 @@ export default function App() {
       bottomText.length === 0
     ) {
       setImageWithtText(url + `/` + template + '/.jpg');
-      console.log();
+     
     } else if (
       template.length > 0 &&
       topText.length > 0 &&
@@ -109,65 +109,53 @@ export default function App() {
     }
   }, [topText, bottomText, imageWithoutText, template]);
 
-  console.log('without', imageWithoutText);
-  console.log('witht', imageWithtText);
   const handleClick = () => {
     return saveAs(imageWithtText, 'meme');
   };
-  // I need to create a function to erease the top and bottom text when the input boxes are erease
+
   return (
     <MainContainer>
       <Header>React meme generator</Header>
       <Box>
         {isLoading && <div>Loading...</div>}
-        {imageWithtText === '' ? (
-          <ImageContainer>
-            <Image
-              data-test-id="meme-image"
-              src={imageWithtText}
-              alt="random"
-            />
-          </ImageContainer>
-        ) : (
-          <ImageContainer>
-            <Image
-              data-test-id="meme-image"
-              src={imageWithtText}
-              alt="random"
-            />
-          </ImageContainer>
-        )}
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-          }}
-        >
-          <TopText for="topText">
-            Top text
-            <Input
-              type="text"
-              id="topText"
-              onChange={(event) => setTopText(event.currentTarget.value)}
-            />
-          </TopText>
-          <BottomText for="bottomText">
-            Bottom text
-            <Input
-              type="text"
-              id="bottomText"
-              onChange={(event) => setBottomText(event.currentTarget.value)}
-            />
-          </BottomText>
-          <Label>
-            Meme template
-            <Input
-              onChange={(event) => {
-                setTemplate(event.currentTarget.value);
-              }}
-            />
-          </Label>
-        </form>
-        <Button onClick={() => handleClick()}>Download</Button>
+        <ImageContainer>
+          <Image data-test-id="meme-image" src={imageWithtText} alt="random" />
+        </ImageContainer>
+        <div>
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+            }}
+          >
+            <TopText for="topText">
+              Top text
+              <Input
+                type="text"
+                id="topText"
+                onChange={(event) => setTopText(event.currentTarget.value)}
+              />
+            </TopText>
+            <BottomText for="bottomText">
+              <br />
+              Bottom text
+              <Input
+                type="text"
+                id="bottomText"
+                onChange={(event) => setBottomText(event.currentTarget.value)}
+              />
+            </BottomText>
+            <Label>
+              <br />
+              Meme template
+              <Input
+                onChange={(event) => {
+                  setTemplate(event.currentTarget.value);
+                }}
+              />
+            </Label>
+          </form>
+          <Button onClick={() => handleClick()}>Download</Button>
+        </div>
       </Box>
     </MainContainer>
   );
